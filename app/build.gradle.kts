@@ -66,16 +66,21 @@ dependencies {
 
     implementation(LibDI.KOIN)
     implementation(LibDI.KOIN_VIEW_MODEL)
+    implementation(LibDI.KOIN_FRAGMENT)
 
     implementation(LibHttp.OKHTTP)
+
 
     implementation(LibUI.AVATAR_VIEW)
     implementation(LibUI.FLEXBOX_LAYOUT)
     implementation(LibUI.MATERIAL_COMPONENTS)
+    implementation(LibUI.MATERIAL_DIALOGS)
+    implementation(LibUI.MATERIAL_DIALOGS_BOTTOMSHEET)
     implementation(LibUI.PICASSO)
     implementation(LibUI.RECYCLERVIEW)
 
     testImplementation(LibTesting.ANDROID_CORE_TESTING)
+    testImplementation(LibTesting.COROUTINES)
     testImplementation(LibTesting.JUNIT)
     testImplementation(LibTesting.KLUENT)
     testImplementation(LibTesting.ROBOLECTRIC)

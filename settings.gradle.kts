@@ -17,9 +17,10 @@ pluginManagement {
     }
 }
 
-rootProject.name = ("Template")
+rootProject.name = ("Hearthis Explorer")
 
 include(
     "app", "image-display"
     , "locale"
+    , "music"
 )
