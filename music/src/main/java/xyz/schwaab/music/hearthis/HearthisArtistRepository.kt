@@ -19,7 +19,8 @@ class HearthisArtistRepository(private val hearthisInterface: HearthisClientInte
         count: Int
     ): GetArtistFeedResponse {
         return try {
-            val trackResponse = hearthisInterface.getTrackFeed(feedType.toDTO(), page, count)
+            //TODO Fix feedType
+            val trackResponse = hearthisInterface.getTrackFeed("", page, count)
             if (trackResponse.isSuccessful) {
                 getArtistsFromTrackFeedResponse(trackResponse, page)
             } else {

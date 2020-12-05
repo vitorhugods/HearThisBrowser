@@ -1,7 +1,7 @@
 package xyz.schwaab.hearthis.ui.main
 
-import androidx.lifecycle.ViewModel
+import xyz.schwaab.hearthis.base.BaseViewModel
 
-class MainViewModel : ViewModel() {
+class MainViewModel : BaseViewModel() {
     // TODO: Implement the ViewModel
 }

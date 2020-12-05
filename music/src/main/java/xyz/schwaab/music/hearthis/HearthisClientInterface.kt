@@ -11,7 +11,7 @@ interface HearthisClientInterface {
 
     @GET("feed/")
     suspend fun getTrackFeed(
-        @Query("type") feedType: FeedTypeDTO,
+        @Query("type") feedType: String,
         @Query("page") page: Int,
         @Query("count") count: Int
     ): Response<List<TrackDTO>>
