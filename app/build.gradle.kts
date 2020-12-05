@@ -51,8 +51,8 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
 
-//    implementation(project(Modules.Android.IMAGE_DISPLAY))
-//    implementation(project(Modules.JVM.LOCALE))
+    implementation(project(Modules.Android.IMAGE_DISPLAY))
+    implementation(project(Modules.JVM.MUSIC))
 
     implementation(LibSupport.ANDROIDX_APPCOMPAT)
     implementation(LibSupport.ANDROIDX_CONSTRAINT_LAYOUT)
@@ -69,7 +69,7 @@ dependencies {
     implementation(LibDI.KOIN_FRAGMENT)
 
     implementation(LibHttp.OKHTTP)
-
+    implementation(LibHttp.OKHTTP_LOGGING)
 
     implementation(LibUI.AVATAR_VIEW)
     implementation(LibUI.FLEXBOX_LAYOUT)
