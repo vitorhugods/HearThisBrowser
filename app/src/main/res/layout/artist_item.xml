@@ -7,33 +7,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.flexbox.FlexboxLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/artistAvatar"
-                android:layout_width="128dp"
-                android:layout_height="128dp"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/wireframe_artist_avatar" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="16dp"
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="wrap_content"
+                android:layout_height="96dp"
+                android:padding="16dp"
+                app:flexDirection="column"
+                app:justifyContent="space_between"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/artistAvatar"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_flexGrow="1">
 
                 <TextView
                     android:id="@+id/tvArtistName"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -43,27 +46,31 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:justifyContent="space_between"
-                    app:layout_constraintBottom_toBottomOf="parent">
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvArtistName">
 
                     <TextView
                         android:id="@+id/tvLikesCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableTint="@color/colorSecondary"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                        android:gravity="center"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
                         app:drawableStartCompat="@drawable/ic_heart"
+                        app:drawableTint="@color/colorSecondary"
                         tools:text="432 Likes" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableTint="@color/colorSecondary"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                        android:gravity="center"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
                         app:drawableStartCompat="@drawable/ic_follower"
+                        app:drawableTint="@color/colorSecondary"
                         tools:text="42 Followers" />
                 </com.google.android.flexbox.FlexboxLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.flexbox.FlexboxLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.flexbox.FlexboxLayout>
+        >
     </com.google.android.material.card.MaterialCardView>
 </layout>

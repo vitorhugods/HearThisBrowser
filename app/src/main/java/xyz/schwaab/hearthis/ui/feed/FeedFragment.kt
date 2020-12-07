@@ -14,7 +14,6 @@ import xyz.schwaab.hearthis.ui.main.MainViewModel
 import xyz.schwaab.image.ImageViewLoader
 
 class FeedFragment : BaseFragment() {
-
     private val mainViewModel by sharedViewModel<MainViewModel>()
     private val feedViewModel by viewModel<FeedViewModel>()
     private val imageViewLoader: ImageViewLoader by inject()
