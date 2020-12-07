@@ -1,6 +1,8 @@
 package xyz.schwaab.music.hearthis
 
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import kotlinx.serialization.SerializationException
 import retrofit2.Response
 import xyz.schwaab.music.artist.ArtistRepository
@@ -40,11 +42,17 @@ class HearthisArtistRepository(private val hearthisInterface: HearthisClientInte
         trackFeedResponse: Response<List<HearthisClientInterface.TrackDTO>>,
         page: Int
     ): GetArtistFeedResponse.Success {
-        //TODO Handle failures on each artists request
-        val artists = trackFeedResponse.body()!!.mapNotNull { track ->
-            hearthisInterface.getArtistDetails(track.user.permalink).body()?.toArtist()
+        return coroutineScope {
+            val artists = trackFeedResponse.body()!!.map { track ->
+                async {
+                    hearthisInterface.getArtistDetails(track.user.permalink).body()?.toArtist()
+                }
+            }.mapNotNull {
+                //TODO Handle failures on each artists request
+                it.await()
+            }
+            GetArtistFeedResponse.Success(page, artists)
         }
-        return GetArtistFeedResponse.Success(page, artists)
     }
 
     private fun HearthisClientInterface.ArtistDTO.toArtist(): Artist = Artist(
