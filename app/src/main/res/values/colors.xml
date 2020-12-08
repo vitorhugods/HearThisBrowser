@@ -6,6 +6,9 @@
     <color name="contrast3">#2A2A2A</color>
     <color name="contrast4">#131212</color>
 
+    <color name="darkText">#131212</color>
+    <color name="lightText">#fff</color>
+
     <color name="colorPrimary">#1E50CF</color>
     <color name="colorOnPrimary">#fff</color>
     <color name="colorPrimaryDark">#1B3475</color>

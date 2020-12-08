@@ -58,6 +58,7 @@ dependencies {
     implementation(LibSupport.ANDROIDX_CONSTRAINT_LAYOUT)
     implementation(LibSupport.ANDROIDX_CORE_KTX)
 
+    implementation(LibArchitecture.FRAGMENT)
     implementation(LibArchitecture.LIVE_DATA)
     implementation(LibArchitecture.VIEW_MODEL)
 

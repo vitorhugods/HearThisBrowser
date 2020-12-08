@@ -30,6 +30,9 @@ class FeedFragment : BaseFragment() {
             artistAdapter.data = artists
         })
         binding.rvArtists.apply {
+            artistAdapter.onItemClick { item, _, _ ->
+                mainViewModel.onArtistSelected(item)
+            }
             val dividerItemDecoration =
                 DividerItemDecoration(inflater.context, DividerItemDecoration.VERTICAL)
             addItemDecoration(dividerItemDecoration)
@@ -37,11 +40,5 @@ class FeedFragment : BaseFragment() {
             adapter = artistAdapter
         }
         return binding.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        // TODO: Use the ViewModel
     }
 }
