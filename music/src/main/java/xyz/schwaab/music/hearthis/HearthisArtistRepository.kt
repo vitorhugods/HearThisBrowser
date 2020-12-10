@@ -22,8 +22,12 @@ class HearthisArtistRepository(private val hearthisInterface: HearthisClientInte
         count: Int
     ): GetArtistFeedResponse {
         return try {
-            //TODO Fix feedType
-            val trackResponse = hearthisInterface.getTrackFeed("", page, count)
+            val feedTypeQuery = when (feedType) {
+                FeedType.POPULAR -> "popular"
+                FeedType.NEW -> "new"
+                FeedType.FEATURED -> ""
+            }
+            val trackResponse = hearthisInterface.getTrackFeed(feedTypeQuery, page, count)
             if (trackResponse.isSuccessful) {
                 getArtistsFromTrackFeedResponse(trackResponse, page)
             } else {

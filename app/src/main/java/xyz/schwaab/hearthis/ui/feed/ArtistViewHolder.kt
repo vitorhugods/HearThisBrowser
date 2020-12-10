@@ -10,7 +10,7 @@ class ArtistViewHolder(
     binding: ArtistItemBinding
 ) :
     BaseViewHolder<ArtistItemBinding, Artist>(binding) {
-    override fun composeViewWithData(item: Artist) {
+    override fun composeViewWithNewData(item: Artist) {
         imageViewLoader.loadImage(item.avatarUrl)
             .into(binding.artistAvatar)
 

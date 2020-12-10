@@ -4,7 +4,7 @@ import xyz.schwaab.music.model.Track
 
 internal fun HearthisClientInterface.TrackDTO.toTrack(): Track = Track(
     id,
-    duration,
+    Track.Duration(duration.toInt()),
     description,
     title,
     readableGenre,

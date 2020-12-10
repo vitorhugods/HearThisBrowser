@@ -77,6 +77,7 @@ dependencies {
     implementation(LibUI.MATERIAL_COMPONENTS)
     implementation(LibUI.MATERIAL_DIALOGS)
     implementation(LibUI.MATERIAL_DIALOGS_BOTTOMSHEET)
+    implementation(LibUI.MATERIAL_PLAY_BUTTON)
     implementation(LibUI.PICASSO)
     implementation(LibUI.RECYCLERVIEW)
 

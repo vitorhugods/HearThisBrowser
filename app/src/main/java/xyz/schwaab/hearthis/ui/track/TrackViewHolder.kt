@@ -9,11 +9,11 @@ class TrackViewHolder(
     private val imageViewLoader: ImageViewLoader,
     binding: TrackItemBinding
 ) : BaseViewHolder<TrackItemBinding, Track>(binding) {
-    override fun composeViewWithData(item: Track) {
+    override fun composeViewWithNewData(item: Track) {
         binding.apply {
             imageViewLoader.loadImage(item.artworkUrl).into(ivTrackArt)
 
-            tvTrackLenght.text = item.duration //TODO Format this properly
+            tvTrackLenght.text = item.duration.seconds.toString() // TODO Format to human-readable
             tvTrackPlayCount.text = item.playbacksCount.toString()
             tvTrackTitle.text = item.title
         }

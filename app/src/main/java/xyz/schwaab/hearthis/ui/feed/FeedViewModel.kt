@@ -25,7 +25,7 @@ class FeedViewModel(private val artistService: ArtistService) : BaseViewModel() 
 
     private fun loadArtistPage(page: Int) {
         viewModelScope.launch {
-            when (val feed = artistService.getArtistsFeed(FeedType.FEATURED, page)) {
+            when (val feed = artistService.getArtistsFeed(FeedType.POPULAR, page)) {
                 is GetArtistFeedResponse.Success -> {
                     _artistList.postValue(feed.artists)
                 }

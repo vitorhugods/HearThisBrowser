@@ -35,7 +35,7 @@ class ArtistFragment(private val imageViewLoader: ImageViewLoader) : BaseFragmen
     private lateinit var binding: ArtistDetailsFragmentBinding
     private val trackAdapter = TrackAdapter(get()).apply {
         onItemClick { item, _, _ ->
-            mainViewModel.onTrackSelected(item)
+            mainViewModel.onTrackSelected(item, viewModel.artistDetails.value!!)
         }
     }
 
