@@ -52,7 +52,6 @@ class MainMusicPlayerWrapper(
         binding.motionLayout.doOnLayout {
             playerSheetBehavior.peekHeight =
                 binding.containerSeekbar.run { y + height }.roundToInt()
-            playerSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         }
     }
 
@@ -127,9 +126,6 @@ class MainMusicPlayerWrapper(
         if (item == null) {
             _state = MusicPlayer.State.PAUSED
             hide()
-            return
-        }
-        if (currentTrack == item.track) {
             return
         }
         if (playerSheetBehavior.state == BottomSheetBehavior.STATE_HIDDEN) {

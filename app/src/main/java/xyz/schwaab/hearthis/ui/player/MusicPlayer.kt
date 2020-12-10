@@ -20,7 +20,6 @@ fun interface MusicPlayerStateListener {
 }
 
 abstract class BaseMusicPlayer : MusicPlayer {
-    private var _currentTrack: Track? = null
     protected val currentTrack: Track?
         get() {
             return _currentTrack
@@ -36,14 +35,6 @@ abstract class BaseMusicPlayer : MusicPlayer {
         get() {
             return _state
         }
-    private val mediaPlayer = MediaPlayer().apply {
-        setAudioAttributes(
-            AudioAttributes.Builder()
-                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-                .setUsage(AudioAttributes.USAGE_MEDIA)
-                .build()
-        )
-    }
     private val progressUpdateHandler: Handler = Handler(Looper.getMainLooper())
     private val updateProgress: Runnable = object : Runnable {
         override fun run() {
@@ -60,6 +51,10 @@ abstract class BaseMusicPlayer : MusicPlayer {
     }
 
     protected fun loadTrack(track: Track, onReadyToPlay: () -> Unit) {
+        if(!startedUpdatingProgress){
+            startedUpdatingProgress = true
+            updateProgress.run()
+        }
         if (_currentTrack == track) {
             return
         }
@@ -71,10 +66,6 @@ abstract class BaseMusicPlayer : MusicPlayer {
         mediaPlayer.setOnPreparedListener {
             onLoadingStateChange(false)
             onReadyToPlay()
-        }
-        if(!startedUpdatingProgress){
-            startedUpdatingProgress = true
-            updateProgress.run()
         }
     }
 
@@ -90,4 +81,16 @@ abstract class BaseMusicPlayer : MusicPlayer {
 
     protected open fun onLoadingStateChange(isLoading: Boolean) {}
     protected open fun onProgressChanged(needlePositionInMillis: Int) {}
+
+    companion object{
+        private var _currentTrack: Track? = null
+        private val mediaPlayer = MediaPlayer().apply {
+            setAudioAttributes(
+                AudioAttributes.Builder()
+                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .setUsage(AudioAttributes.USAGE_MEDIA)
+                    .build()
+            )
+        }
+    }
 }
