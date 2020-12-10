@@ -74,7 +74,8 @@
 
                 <TextView
                     android:id="@+id/tvTrackCurrentTime"
-                    android:layout_width="48dp"
+                    android:layout_width="56dp"
+                    android:gravity="center_vertical"
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                     app:layout_flexShrink="0"
@@ -88,12 +89,12 @@
 
                 <TextView
                     android:id="@+id/tvTrackLenght"
-                    android:layout_width="48dp"
+                    android:layout_width="56dp"
+                    tools:text="4:38"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
+                    android:gravity="center_vertical|end"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                    app:layout_flexShrink="0"
-                    tools:text="4:32" />
+                    app:layout_flexShrink="0"/>
             </com.google.android.flexbox.FlexboxLayout>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
