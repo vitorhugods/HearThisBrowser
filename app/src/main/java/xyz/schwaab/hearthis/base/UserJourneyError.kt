@@ -10,4 +10,12 @@ sealed class UserJourneyError {
      * There's absolutely no distinction between these for the user.
      */
     object LackOfService : UserJourneyError()
+
+    sealed class Artist: UserJourneyError(){
+        class NotFound(val permalink: String): Artist()
+    }
+}
+
+fun interface UserJourneyErrorListener{
+    fun onError(userJourneyError: UserJourneyError)
 }

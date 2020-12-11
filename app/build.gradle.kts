@@ -51,13 +51,15 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
 
-//    implementation(project(Modules.Android.IMAGE_DISPLAY))
-//    implementation(project(Modules.JVM.LOCALE))
+    implementation(project(Modules.Android.IMAGE_DISPLAY))
+    implementation(project(Modules.JVM.MUSIC))
+    implementation(project(Modules.JVM.LOCALE))
 
     implementation(LibSupport.ANDROIDX_APPCOMPAT)
     implementation(LibSupport.ANDROIDX_CONSTRAINT_LAYOUT)
     implementation(LibSupport.ANDROIDX_CORE_KTX)
 
+    implementation(LibArchitecture.FRAGMENT)
     implementation(LibArchitecture.LIVE_DATA)
     implementation(LibArchitecture.VIEW_MODEL)
 
@@ -69,13 +71,14 @@ dependencies {
     implementation(LibDI.KOIN_FRAGMENT)
 
     implementation(LibHttp.OKHTTP)
-
+    implementation(LibHttp.OKHTTP_LOGGING)
 
     implementation(LibUI.AVATAR_VIEW)
     implementation(LibUI.FLEXBOX_LAYOUT)
     implementation(LibUI.MATERIAL_COMPONENTS)
     implementation(LibUI.MATERIAL_DIALOGS)
     implementation(LibUI.MATERIAL_DIALOGS_BOTTOMSHEET)
+    implementation(LibUI.MATERIAL_PLAY_BUTTON)
     implementation(LibUI.PICASSO)
     implementation(LibUI.RECYCLERVIEW)
 

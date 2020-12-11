@@ -21,7 +21,7 @@ abstract class BaseRecyclerAdapter<DATA : Any, VH : BaseViewHolder<*, DATA>> :
 
     final override fun onBindViewHolder(holder: VH, position: Int) {
         val item = data[position]
-        holder.composeViewWithData(item)
+        holder.composeViewWithNewData(item)
         holder.onRootViewClick { view ->
             onItemClickListeners.forEach { listener ->
                 listener.onItemClick(item, position, view)

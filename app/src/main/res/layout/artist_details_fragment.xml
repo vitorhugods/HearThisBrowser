@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:flexDirection="column">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/containerArtistDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_flexShrink="0"
+                app:layout_insetEdge="top">
+
+                <ImageView
+                    android:id="@+id/ivArtistBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="197dp"
+                    tools:src="@drawable/wireframe_artist_background" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@drawable/bottom_top_dark_gradient"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <xyz.schwaab.avvylib.AvatarView
+                    android:id="@+id/ivArtistAvatar"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_marginTop="96dp"
+                    app:avvy_border_color="@color/colorPrimary"
+                    app:avvy_border_color_end="@color/colorPrimaryDark"
+                    app:avvy_border_thickness="4dp"
+                    app:avvy_border_thickness_highlight="0dp"
+                    app:avvy_distance_to_border="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/ivArtistBackground"
+                    tools:src="@drawable/wireframe_artist_avatar" />
+
+                <TextView
+                    android:id="@+id/tvArtistName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:gravity="center"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                    android:textColor="@color/lightText"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivArtistBackground"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/ivArtistBackground"
+                    app:layout_constraintTop_toBottomOf="@id/ivArtistAvatar"
+                    tools:text="Lorem Ipsum" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Killing recycling for now -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tracksList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:nestedScrollingEnabled="true"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/containerArtistDetails"
+                tools:listitem="@layout/track_item" />
+
+        </com.google.android.flexbox.FlexboxLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

@@ -1,3 +1,23 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Hearthis Explorer</string>
+    <string name="label_playback_count">Played  times</string>
+    <string name="error_lack_of_connection">No connection available</string>
+    <string name="error_lack_of_service">Service unavailable at the moment. Please try again later</string>
+    <string name="error_artist_not_found">Artist not found</string>
+    <plurals name="label_playback_count">
+        <item quantity="one">%1$d play</item>
+        <item quantity="other">%1$d plays</item>
+    </plurals>
+    <plurals name="label_favourite_count">
+        <item quantity="one">%1$d fav</item>
+        <item quantity="other">%1$d favs</item>
+    </plurals>
+    <plurals name="label_like_count">
+        <item quantity="one">%1$d like</item>
+        <item quantity="other">%1$d likes</item>
+    </plurals>
+    <plurals name="label_follower_count">
+        <item quantity="one">%1$d follower</item>
+        <item quantity="other">%1$d followers</item>
+    </plurals>
 </resources>

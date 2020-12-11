@@ -10,12 +10,25 @@
             android:id="@+id/includeAppbar"
             layout="@layout/default_appbar" />
 
-        <FrameLayout
-            android:id="@+id/container"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/includeAppbar" />
+            app:layout_constraintTop_toBottomOf="@id/includeAppbar">
 
+            <FrameLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/includeAppbar" />
+
+            <include
+                android:id="@+id/includePlayer"
+                layout="@layout/player_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

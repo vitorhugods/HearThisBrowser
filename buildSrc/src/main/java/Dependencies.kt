@@ -25,6 +25,7 @@ object Versions {
     const val KTLINT = "0.39.0"
     const val MATERIAL_COMPONENTS = "1.2.1"
     const val MATERIAL_DIALOGS = "3.3.0"
+    const val MATERIAL_PLAY_BUTTON = "1.0.0"
     const val OKHTTP = "4.9.0"
     const val PICASSO = "2.71828"
     const val RECYCLERVIEW = "1.1.0"
@@ -44,8 +45,7 @@ object BuildPluginsVersion {
 object LibArchitecture {
     const val FRAGMENT = "androidx.fragment:fragment-ktx:${Versions.FRAGMENT}"
     const val LIVE_DATA = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.ANDROID_LIFECYCLE}"
-    const val VIEW_MODEL =
-        "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.ANDROID_LIFECYCLE}"
+    const val VIEW_MODEL = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.ANDROID_LIFECYCLE}"
 }
 
 object LibCoroutines {
@@ -93,6 +93,7 @@ object LibUI {
     const val MATERIAL_COMPONENTS = "com.google.android.material:material:${Versions.MATERIAL_COMPONENTS}"
     const val MATERIAL_DIALOGS = "com.afollestad.material-dialogs:core:${Versions.MATERIAL_DIALOGS}"
     const val MATERIAL_DIALOGS_BOTTOMSHEET = "com.afollestad.material-dialogs:bottomsheets:${Versions.MATERIAL_DIALOGS}"
+    const val MATERIAL_PLAY_BUTTON = "me.zhanghai.android.materialplaypausedrawable:library:${Versions.MATERIAL_PLAY_BUTTON}"
     const val PICASSO = "com.squareup.picasso:picasso:${Versions.PICASSO}"
     const val RECYCLERVIEW = "androidx.recyclerview:recyclerview:${Versions.RECYCLERVIEW}"
 }
