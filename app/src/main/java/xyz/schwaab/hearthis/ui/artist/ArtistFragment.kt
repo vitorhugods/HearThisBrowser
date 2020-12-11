@@ -57,6 +57,7 @@ class ArtistFragment(private val imageViewLoader: ImageViewLoader) : BaseFragmen
             trackAdapter.data = tracks
         })
 
+        observeErrors(viewModel)
         return binding.root
     }
 

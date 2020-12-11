@@ -53,7 +53,6 @@ class HearthisArtistRepository(private val hearthisInterface: HearthisClientInte
                     hearthisInterface.getArtistDetails(track.user.permalink).body()?.toArtist()
                 }
             }.mapNotNull {
-                //TODO Handle failures on each artists request
                 it.await()
             }
             GetArtistFeedResponse.Success(page, artists)

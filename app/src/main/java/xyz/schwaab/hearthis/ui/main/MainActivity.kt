@@ -39,7 +39,12 @@ class MainActivity : BaseActivity() {
             displayArtistDetails(artist)
         })
 
-        playerWrapper = MainMusicPlayerWrapper(imageViewLoader, binding.includePlayer, timeFormatter)
+        playerWrapper = MainMusicPlayerWrapper(
+            imageViewLoader,
+            binding.includePlayer,
+            timeFormatter,
+            defaultErrorListener
+        )
         viewModel.currentlyPlaying.attachViewComposer(this, playerWrapper)
     }
 

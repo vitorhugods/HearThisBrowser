@@ -7,6 +7,8 @@ import androidx.core.view.isVisible
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import me.zhanghai.android.materialplaypausedrawable.MaterialPlayPauseDrawable
 import xyz.schwaab.hearthis.base.BaseViewComposer
+import xyz.schwaab.hearthis.base.UserJourneyError
+import xyz.schwaab.hearthis.base.UserJourneyErrorListener
 import xyz.schwaab.hearthis.databinding.PlayerViewBinding
 import xyz.schwaab.hearthis.ui.formatter.TimeFormatter
 import xyz.schwaab.image.ImageViewLoader
@@ -19,7 +21,8 @@ import kotlin.math.roundToInt
 class MainMusicPlayerWrapper(
     private val imageViewLoader: ImageViewLoader,
     private val binding: PlayerViewBinding,
-    private val timeFormatter: TimeFormatter
+    private val timeFormatter: TimeFormatter,
+    private val userJourneyErrorListener: UserJourneyErrorListener
 ) : BaseMusicPlayer(), BaseViewComposer<PlayingTrackInfo?> {
 
     private val playerSheetBehavior
@@ -109,6 +112,14 @@ class MainMusicPlayerWrapper(
         binding.seekbar.value = safeProgressInSeconds
         binding.tvTrackCurrentTime.text =
             timeFormatter.getHumanReadableDuration(safeProgressInSeconds)
+    }
+
+    override fun onLackOfConnection() {
+        userJourneyErrorListener.onError(UserJourneyError.LackOfConnection)
+    }
+
+    override fun onUnknownError() {
+        userJourneyErrorListener.onError(UserJourneyError.LackOfService)
     }
 
     /**

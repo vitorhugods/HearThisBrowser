@@ -5,6 +5,7 @@ import android.media.MediaPlayer
 import android.os.Handler
 import android.os.Looper
 import xyz.schwaab.music.model.Track
+import java.io.IOException
 
 interface MusicPlayer {
     fun play()
@@ -51,7 +52,7 @@ abstract class BaseMusicPlayer : MusicPlayer {
     }
 
     protected fun loadTrack(track: Track, onReadyToPlay: () -> Unit) {
-        if(!startedUpdatingProgress){
+        if (!startedUpdatingProgress) {
             startedUpdatingProgress = true
             updateProgress.run()
         }
@@ -59,30 +60,49 @@ abstract class BaseMusicPlayer : MusicPlayer {
             return
         }
         _currentTrack = track
-        mediaPlayer.reset()
-        mediaPlayer.setDataSource(track.streamUrl)
-        onLoadingStateChange(true)
-        mediaPlayer.prepareAsync()
-        mediaPlayer.setOnPreparedListener {
-            onLoadingStateChange(false)
-            onReadyToPlay()
+        mediaPlayer.safeAction {
+            reset()
+            setDataSource(track.streamUrl)
+            onLoadingStateChange(true)
+            prepareAsync()
+            setOnPreparedListener {
+                onLoadingStateChange(false)
+                onReadyToPlay()
+            }
         }
     }
 
     override fun play() {
         _state = MusicPlayer.State.PLAYING
-        mediaPlayer.start()
+        mediaPlayer.safeAction {
+            start()
+        }
     }
 
     override fun pause() {
         _state = MusicPlayer.State.PAUSED
-        mediaPlayer.pause()
+        mediaPlayer.safeAction {
+            pause()
+        }
     }
 
     protected open fun onLoadingStateChange(isLoading: Boolean) {}
     protected open fun onProgressChanged(needlePositionInMillis: Int) {}
+    protected open fun onLackOfConnection() {}
+    protected open fun onUnknownError() {}
 
-    companion object{
+    private fun MediaPlayer.safeAction(action: (MediaPlayer.() -> Unit)) {
+        try {
+            action()
+        } catch (io: IOException) {
+            onLackOfConnection()
+        } catch (exception: Exception) {
+            //TODO Improve exception catching here
+            onUnknownError()
+        }
+    }
+
+    companion object {
         private var _currentTrack: Track? = null
         private val mediaPlayer = MediaPlayer().apply {
             setAudioAttributes(

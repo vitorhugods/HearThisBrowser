@@ -14,10 +14,9 @@ import xyz.schwaab.hearthis.databinding.FeedFragmentBinding
 import xyz.schwaab.hearthis.ui.main.MainViewModel
 import xyz.schwaab.image.ImageViewLoader
 
-class FeedFragment : BaseFragment() {
+class FeedFragment(imageViewLoader: ImageViewLoader) : BaseFragment() {
     private val mainViewModel by sharedViewModel<MainViewModel>()
     private val feedViewModel by viewModel<FeedViewModel>()
-    private val imageViewLoader: ImageViewLoader by inject()
     private val artistAdapter = ArtistAdapter(imageViewLoader, get())
     lateinit var binding: FeedFragmentBinding
 
@@ -40,6 +39,8 @@ class FeedFragment : BaseFragment() {
 
             adapter = artistAdapter
         }
+        observeErrors(feedViewModel)
         return binding.root
     }
+
 }

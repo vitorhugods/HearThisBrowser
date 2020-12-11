@@ -9,6 +9,7 @@ import xyz.schwaab.hearthis.ui.feed.FeedFragment
 import xyz.schwaab.hearthis.ui.formatter.ArtistInfoFormatter
 import xyz.schwaab.hearthis.ui.formatter.TimeFormatter
 import xyz.schwaab.hearthis.ui.formatter.TrackInfoFormatter
+import xyz.schwaab.hearthis.ui.formatter.UserJourneyErrorFormatter
 import xyz.schwaab.hearthis.util.default
 import xyz.schwaab.image.ImageViewLoader
 import xyz.schwaab.image.usingPicasso
@@ -16,9 +17,10 @@ import xyz.schwaab.image.usingPicasso
 val uiModule = module {
     single { UserLocaleProvider.default() }
     single { ImageViewLoader.usingPicasso(Picasso.get()) }
+    factory { UserJourneyErrorFormatter.default(get(), get()) }
     factory { TimeFormatter.default() }
     factory { ArtistInfoFormatter.default(get(), get()) }
     factory { TrackInfoFormatter.default(get(), get()) }
-    fragment { FeedFragment() }
+    fragment { FeedFragment(get()) }
     fragment { ArtistFragment(get()) }
 }

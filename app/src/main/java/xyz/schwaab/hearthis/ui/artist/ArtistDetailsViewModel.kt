@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import xyz.schwaab.hearthis.base.BaseViewModel
+import xyz.schwaab.hearthis.base.UserJourneyError
 import xyz.schwaab.music.artist.ArtistService
 import xyz.schwaab.music.artist.GetArtistResponse
 import xyz.schwaab.music.model.Artist
@@ -36,11 +37,16 @@ class ArtistDetailsViewModel(
                 _artistDetails.postValue(artistsResponse.artist)
                 getTracksForArtist(artistsResponse)
             }
-            GetArtistResponse.Failure.LackOfConnection -> TODO()
-            GetArtistResponse.Failure.ServiceUnavailable -> TODO()
-            GetArtistResponse.Failure.Cancelled -> TODO()
-            GetArtistResponse.Failure.NotFound -> TODO()
-            GetArtistResponse.Failure.Serialization -> TODO()
+            GetArtistResponse.Failure.LackOfConnection -> postError(UserJourneyError.LackOfConnection)
+            GetArtistResponse.Failure.ServiceUnavailable, GetArtistResponse.Failure.Serialization -> {
+                postError(UserJourneyError.LackOfService)
+            }
+            GetArtistResponse.Failure.NotFound -> postError(
+                UserJourneyError.Artist.NotFound(
+                    artistPermalink
+                )
+            )
+            GetArtistResponse.Failure.Cancelled -> return
         }
     }
 
@@ -50,10 +56,11 @@ class ArtistDetailsViewModel(
             is GetTracksResponse.Success -> {
                 _artistTracks.postValue(response.tracksList)
             }
-            GetTracksResponse.Failure.LackOfConnection -> TODO()
-            GetTracksResponse.Failure.ServiceUnavailable -> TODO()
-            GetTracksResponse.Failure.Cancelled -> TODO()
-            GetTracksResponse.Failure.Serialization -> TODO()
+            GetTracksResponse.Failure.LackOfConnection -> postError(UserJourneyError.LackOfConnection)
+            GetTracksResponse.Failure.ServiceUnavailable, GetTracksResponse.Failure.Serialization -> {
+                postError(UserJourneyError.LackOfService)
+            }
+            GetTracksResponse.Failure.Cancelled -> return
         }
     }
 }

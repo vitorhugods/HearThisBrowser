@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import xyz.schwaab.hearthis.base.BaseViewModel
+import xyz.schwaab.hearthis.base.UserJourneyError
 import xyz.schwaab.music.artist.ArtistService
 import xyz.schwaab.music.artist.GetArtistFeedResponse
 import xyz.schwaab.music.model.Artist
@@ -29,10 +30,12 @@ class FeedViewModel(private val artistService: ArtistService) : BaseViewModel() 
                 is GetArtistFeedResponse.Success -> {
                     _artistList.postValue(feed.artists)
                 }
-                GetArtistFeedResponse.Failure.LackOfConnection -> TODO()
-                GetArtistFeedResponse.Failure.ServiceUnavailable -> TODO()
-                GetArtistFeedResponse.Failure.Cancelled -> TODO()
-                GetArtistFeedResponse.Failure.Serialization -> TODO()
+                GetArtistFeedResponse.Failure.LackOfConnection -> postError(UserJourneyError.LackOfConnection)
+                GetArtistFeedResponse.Failure.ServiceUnavailable,
+                GetArtistFeedResponse.Failure.Serialization -> postError(
+                    UserJourneyError.LackOfService
+                )
+                GetArtistFeedResponse.Failure.Cancelled -> return@launch
             }
         }
     }
