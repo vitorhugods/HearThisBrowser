@@ -2,12 +2,14 @@ package xyz.schwaab.hearthis.ui.feed
 
 import xyz.schwaab.hearthis.base.BaseViewHolder
 import xyz.schwaab.hearthis.databinding.ArtistItemBinding
+import xyz.schwaab.hearthis.ui.formatter.ArtistInfoFormatter
 import xyz.schwaab.image.ImageViewLoader
 import xyz.schwaab.music.model.Artist
 
 class ArtistViewHolder(
     private val imageViewLoader: ImageViewLoader,
-    binding: ArtistItemBinding
+    binding: ArtistItemBinding,
+    private val artistInfoFormatter: ArtistInfoFormatter
 ) :
     BaseViewHolder<ArtistItemBinding, Artist>(binding) {
     override fun composeViewWithNewData(item: Artist) {
@@ -15,6 +17,7 @@ class ArtistViewHolder(
             .into(binding.artistAvatar)
 
         binding.tvArtistName.text = item.name
-        binding.tvLikesCount.text = item.likeCount.toString()
+        binding.tvLikesCount.text = artistInfoFormatter.getHumanReadableLikeCount(item)
+        binding.tvFollowersCount.text = artistInfoFormatter.getHumanReadableFollowersCount(item)
     }
 }

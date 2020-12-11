@@ -8,6 +8,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import me.zhanghai.android.materialplaypausedrawable.MaterialPlayPauseDrawable
 import xyz.schwaab.hearthis.base.BaseViewComposer
 import xyz.schwaab.hearthis.databinding.PlayerViewBinding
+import xyz.schwaab.hearthis.ui.formatter.TimeFormatter
 import xyz.schwaab.image.ImageViewLoader
 import kotlin.math.roundToInt
 
@@ -17,7 +18,8 @@ import kotlin.math.roundToInt
  */
 class MainMusicPlayerWrapper(
     private val imageViewLoader: ImageViewLoader,
-    private val binding: PlayerViewBinding
+    private val binding: PlayerViewBinding,
+    private val timeFormatter: TimeFormatter
 ) : BaseMusicPlayer(), BaseViewComposer<PlayingTrackInfo?> {
 
     private val playerSheetBehavior
@@ -103,8 +105,10 @@ class MainMusicPlayerWrapper(
             return
         }
         val needleInSeconds = needlePositionInMillis.toFloat() / 1000
-        binding.seekbar.value = needleInSeconds.coerceAtMost(binding.seekbar.valueTo)
-        binding.tvTrackCurrentTime.text = needleInSeconds.coerceAtMost(binding.seekbar.valueTo).toString() // TODO Human Readable formatting
+        val safeProgressInSeconds = needleInSeconds.coerceAtMost(binding.seekbar.valueTo)
+        binding.seekbar.value = safeProgressInSeconds
+        binding.tvTrackCurrentTime.text =
+            timeFormatter.getHumanReadableDuration(safeProgressInSeconds)
     }
 
     /**
@@ -140,7 +144,7 @@ class MainMusicPlayerWrapper(
         imageViewLoader.loadImage(item.track.artworkUrl).into(binding.ivTrackArt)
         binding.seekbar.valueTo = item.track.duration.seconds.toFloat()
 
-        binding.tvTrackLenght.text = item.track.duration.seconds.toString()
+        binding.tvTrackLenght.text = timeFormatter.getHumanReadableDuration(item.track.duration)
         binding.tvArtistName.text = item.artist.name
         binding.tvTrackTitle.text = item.track.title
     }

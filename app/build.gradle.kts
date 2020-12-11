@@ -53,6 +53,7 @@ dependencies {
 
     implementation(project(Modules.Android.IMAGE_DISPLAY))
     implementation(project(Modules.JVM.MUSIC))
+    implementation(project(Modules.JVM.LOCALE))
 
     implementation(LibSupport.ANDROIDX_APPCOMPAT)
     implementation(LibSupport.ANDROIDX_CONSTRAINT_LAYOUT)

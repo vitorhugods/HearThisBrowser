@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
+import org.koin.android.ext.android.get
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -17,7 +18,7 @@ class FeedFragment : BaseFragment() {
     private val mainViewModel by sharedViewModel<MainViewModel>()
     private val feedViewModel by viewModel<FeedViewModel>()
     private val imageViewLoader: ImageViewLoader by inject()
-    private val artistAdapter = ArtistAdapter(imageViewLoader)
+    private val artistAdapter = ArtistAdapter(imageViewLoader, get())
     lateinit var binding: FeedFragmentBinding
 
     override fun onCreateView(

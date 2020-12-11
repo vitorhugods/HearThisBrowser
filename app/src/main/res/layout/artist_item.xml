@@ -61,11 +61,12 @@
                         tools:text="432 Likes" />
 
                     <TextView
+                        android:id="@+id/tvFollowersCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-                        app:drawableStartCompat="@drawable/ic_follower"
+                        app:drawableEndCompat="@drawable/ic_follower"
                         app:drawableTint="@color/colorSecondary"
                         tools:text="42 Followers" />
                 </com.google.android.flexbox.FlexboxLayout>

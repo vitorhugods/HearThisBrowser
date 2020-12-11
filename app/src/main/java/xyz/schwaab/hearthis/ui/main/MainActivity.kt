@@ -10,14 +10,15 @@ import xyz.schwaab.hearthis.base.BaseActivity
 import xyz.schwaab.hearthis.databinding.MainActivityBinding
 import xyz.schwaab.hearthis.ui.artist.ArtistFragment
 import xyz.schwaab.hearthis.ui.feed.FeedFragment
+import xyz.schwaab.hearthis.ui.formatter.TimeFormatter
 import xyz.schwaab.hearthis.ui.player.MainMusicPlayerWrapper
 import xyz.schwaab.hearthis.util.attachViewComposer
 import xyz.schwaab.image.ImageViewLoader
 import xyz.schwaab.music.model.Artist
 
 class MainActivity : BaseActivity() {
-
     private val imageViewLoader: ImageViewLoader by inject()
+    private val timeFormatter: TimeFormatter by inject()
     private lateinit var playerWrapper: MainMusicPlayerWrapper
     private val viewModel by viewModel<MainViewModel>()
     private lateinit var binding: MainActivityBinding
@@ -38,7 +39,7 @@ class MainActivity : BaseActivity() {
             displayArtistDetails(artist)
         })
 
-        playerWrapper = MainMusicPlayerWrapper(imageViewLoader, binding.includePlayer)
+        playerWrapper = MainMusicPlayerWrapper(imageViewLoader, binding.includePlayer, timeFormatter)
         viewModel.currentlyPlaying.attachViewComposer(this, playerWrapper)
     }
 

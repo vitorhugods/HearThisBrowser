@@ -25,7 +25,6 @@ import kotlin.math.max
 import kotlin.math.min
 
 class ArtistFragment(private val imageViewLoader: ImageViewLoader) : BaseFragment() {
-
     private val mainViewModel by sharedViewModel<MainViewModel>()
     private val viewModel: ArtistDetailsViewModel by viewModel {
         parametersOf(
@@ -33,7 +32,7 @@ class ArtistFragment(private val imageViewLoader: ImageViewLoader) : BaseFragmen
         )
     }
     private lateinit var binding: ArtistDetailsFragmentBinding
-    private val trackAdapter = TrackAdapter(get()).apply {
+    private val trackAdapter = TrackAdapter(get(), get(), get()).apply {
         onItemClick { item, _, _ ->
             mainViewModel.onTrackSelected(item, viewModel.artistDetails.value!!)
         }
