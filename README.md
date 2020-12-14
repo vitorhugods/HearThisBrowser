@@ -1,6 +1,6 @@
 # HearThisBrowser
 
-Simple apps that consumes the [HearThisAPI](hearthis.at).
+Simple apps that consumes the [HearThis' API](https://hearthis.at/).
 
 At the moment, it is capable of:
 - Listing artists, based on popular music
