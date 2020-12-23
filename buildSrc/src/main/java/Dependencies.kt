@@ -11,7 +11,7 @@ object Versions {
     const val ANDROID_LIFECYCLE = "2.2.0"
     const val ANDROID_ARCH = "2.1.0"
     const val APPCOMPAT = "1.2.0"
-    const val AVATAR_VIEW = "1.1.0"
+    const val AVATAR_VIEW = "1.1.1"
     const val CONSTRAINT_LAYOUT = "2.0.4"
     const val CORE_KTX = "1.3.2"
     const val COROUTINES = "1.4.1"
